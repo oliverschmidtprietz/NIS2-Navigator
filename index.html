@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIS2 NAVIGATOR — onezero.legal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+    --bg: #F5F0E8;
+    --bg-alt: #EDE8DF;
+    --ink: #1A1A1A;
+    --ink-light: #4A4A4A;
+    --ink-muted: #8A8A7A;
+    --green: #00E676;
+    --green-dark: #00C853;
+    --pink: #FF4081;
+    --mint-hl: #B8F0D0;
+    --pink-hl: #FF80AB;
+    --blue-hl: #BFD9F5;
+    --border-w: 2.5px;
+    --skill-color: #FCCCA0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+/* ── NAV ─────────────────────────────── */
+.nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: var(--border-w) solid var(--ink);
+    padding: 0.8rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.nav-section-icon {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.6rem;
+    background: var(--pink);
+    color: white;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.nav-brand {
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.nav-brand a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.nav-brand a:hover { color: var(--pink); }
+
+.nav-divider {
+    color: var(--ink-muted);
+    font-size: 0.85rem;
+}
+
+.nav-skill {
+    font-size: 0.75rem;
+    background: var(--skill-color);
+    border: 1.5px solid var(--ink);
+    padding: 0.2rem 0.6rem;
+    letter-spacing: 0.04em;
+}
+
+.nav-version {
+    font-size: 0.72rem;
+    border: 1.5px solid var(--ink);
+    padding: 0.15rem 0.5rem;
+    letter-spacing: 0.04em;
+}
+
+.nav-spacer { flex: 1; }
+
+.nav-back {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    padding: 0.4rem 0.8rem;
+    border: 1.5px solid var(--ink);
+}
+
+.nav-back:hover { background: var(--ink); color: var(--bg); }
+
+/* ── HERO ────────────────────────────── */
+.hero {
+    padding: 3.5rem 1.5rem 3rem;
+    max-width: 1000px;
+}
+
+.badges {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 3rem;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.45rem 0.9rem;
+    width: fit-content;
+    border: 1.5px solid var(--ink);
+}
+
+.badge--live { background: var(--pink); color: white; border-color: var(--pink); }
+.badge--live::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 6px var(--green);
+}
+
+.badge--color { background: var(--skill-color); }
+
+.hero h1 {
+    font-family: 'Archivo', sans-serif; font-weight: 800;
+    font-size: clamp(2.8rem, 9vw, 5.2rem);
+    line-height: 0.95;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin-bottom: 2.5rem;
+}
+
+.hero h1 em {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    text-transform: lowercase;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+.hero h1 .hl-accent {
+    background: var(--skill-color);
+    padding: 0 0.15em;
+}
+
+.hero-sub {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    max-width: 640px;
+}
+
+.hero-sub .hl {
+    background: var(--blue-hl);
+    padding: 0.05em 0.25em;
+}
+
+/* ── MARQUEE ─────────────────────────── */
+.marquee-wrap {
+    background: var(--ink);
+    overflow: hidden;
+    padding: 0.9rem 0;
+    border-top: var(--border-w) solid var(--ink);
+    border-bottom: var(--border-w) solid var(--ink);
+}
+
+.marquee-track {
+    display: flex;
+    white-space: nowrap;
+    animation: marquee-scroll 50s linear infinite;
+}
+
+.marquee-text {
+    font-family: 'Archivo', sans-serif; font-weight: 800;
+    font-size: 1.2rem;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    flex-shrink: 0;
+    padding-right: 2rem;
+}
+
+@keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* ── SECTION ─────────────────────────── */
+.section {
+    padding: 4rem 1.5rem 1rem;
+    max-width: 1000px;
+}
+
+.section-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.section-label .section-icon {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1rem;
+    color: var(--ink);
+}
+
+.section h2 {
+    font-family: 'Archivo', sans-serif; font-weight: 800;
+    font-size: clamp(1.8rem, 6vw, 3.2rem);
+    line-height: 1.02;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.5rem;
+}
+
+.section h2 em {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    text-transform: lowercase;
+    font-weight: 400;
+}
+
+.section-intro {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    max-width: 620px;
+    color: var(--ink-light);
+    margin-bottom: 3rem;
+}
+
+/* ── FEATURE CARDS ───────────────────── */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.2rem;
+    padding: 0 1.5rem 4rem;
+    max-width: 1000px;
+}
+
+.feature-card {
+    border: var(--border-w) solid var(--ink);
+    padding: 1.5rem;
+    transition: transform 0.15s ease;
+}
+
+.feature-card:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 3px 3px 0 var(--ink);
+}
+
+.feature-number {
+    font-family: 'Archivo', sans-serif; font-weight: 800;
+    font-size: 2.8rem;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+}
+
+.feature-name {
+    font-family: 'Archivo', sans-serif; font-weight: 800;
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    margin-bottom: 0.8rem;
+}
+
+.feature-desc {
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: var(--ink-light);
+}
+
+/* ── WORKFLOW ────────────────────────── */
+.workflow-list {
+    padding: 0 1.5rem 4rem;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.workflow-step {
+    border: var(--border-w) solid var(--ink);
+    background: var(--bg);
+    padding: 1rem 1.4rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.4rem;
+    align-items: start;
+    transition: background 0.15s;
+}
+
+.workflow-step:hover { background: var(--skill-color); }
+
+.workflow-step-num {
+    font-family: 'Archivo', sans-serif; font-weight: 800;
+    font-size: 1.4rem;
+    line-height: 1;
+    width: 2.2rem;
+    height: 2.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--skill-color);
+    border: 2px solid var(--ink);
+    flex-shrink: 0;
+}
+
+.workflow-step-body { padding-top: 0.15rem; }
+
+.workflow-step-title {
+    font-weight: 700;
+    font-size: 0.88rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.3rem;
+}
+
+.workflow-step-desc {
+    font-size: 0.78rem;
+    line-height: 1.6;
+    color: var(--ink-light);
+}
+
+.workflow-step-desc .hl {
+    background: var(--blue-hl);
+    padding: 0.05em 0.25em;
+}
+
+/* ── MODES ───────────────────────────── */
+.modes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.2rem;
+    padding: 0 1.5rem 4rem;
+    max-width: 1000px;
+}
+
+.mode-card {
+    border: var(--border-w) solid var(--ink);
+    padding: 1.5rem;
+}
+
+.mode-name {
+    font-family: 'Archivo', sans-serif; font-weight: 800;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+    letter-spacing: -0.01em;
+}
+
+.mode-desc {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--ink-light);
+}
+
+/* ── FOLDER TREE ─────────────────────── */
+.tree-wrap {
+    padding: 0 1.5rem 4rem;
+    max-width: 1000px;
+}
+
+.tree-card {
+    border: var(--border-w) solid var(--ink);
+    background: var(--ink);
+    color: #E0E0E0;
+    padding: 1.8rem 2rem;
+    font-size: 0.82rem;
+    line-height: 1.55;
+    overflow-x: auto;
+}
+
+.tree-card pre {
+    font-family: 'JetBrains Mono', monospace;
+    color: #E0E0E0;
+    white-space: pre;
+}
+
+.tree-card .comment { color: #00E676; }
+
+/* ── DEPLOYMENT ──────────────────────── */
+.deployment-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    padding: 0 1.5rem 4rem;
+    max-width: 1000px;
+}
+
+.deploy-card {
+    border: var(--border-w) solid var(--ink);
+    background: var(--bg);
+    padding: 1.8rem;
+}
+
+.deploy-card h3 {
+    font-family: 'Archivo', sans-serif; font-weight: 800;
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.deploy-card ol {
+    padding-left: 1.2rem;
+    font-size: 0.82rem;
+    line-height: 1.8;
+    color: var(--ink-light);
+}
+
+.deploy-card code {
+    background: var(--ink);
+    color: var(--green);
+    padding: 0.05em 0.4em;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+}
+
+.deploy-card pre {
+    background: var(--ink);
+    color: var(--green);
+    padding: 0.8rem 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    margin-top: 0.8rem;
+    overflow-x: auto;
+}
+
+/* ── OUTPUTS LIST ────────────────────── */
+.outputs-list {
+    padding: 0 1.5rem 4rem;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.output-row {
+    border: var(--border-w) solid var(--ink);
+    background: var(--bg);
+    padding: 1.2rem 1.6rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1.4rem;
+    align-items: center;
+}
+
+.output-name {
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.output-desc {
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: var(--ink-light);
+}
+
+/* ── EVALS ───────────────────────────── */
+.evals-section {
+    padding: 0 1.5rem 4rem;
+    max-width: 1000px;
+}
+
+.evals-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    border: var(--border-w) solid var(--ink);
+    background: var(--skill-color);
+    padding: 1.4rem 1.5rem;
+}
+
+.stat-value {
+    font-family: 'Archivo', sans-serif; font-weight: 800;
+    font-size: 2.8rem;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+}
+
+.stat-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-light);
+}
+
+.eval-topics {
+    border: var(--border-w) solid var(--ink);
+    background: var(--bg);
+}
+
+.eval-row {
+    padding: 1rem 1.5rem;
+    border-bottom: 1.5px solid var(--ink);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 1.2rem;
+    align-items: center;
+    font-size: 0.8rem;
+}
+
+.eval-row:last-child { border-bottom: none; }
+
+.eval-id {
+    font-family: 'Archivo', sans-serif; font-weight: 800;
+    font-size: 0.95rem;
+    width: 2.5rem;
+}
+
+.eval-asserts {
+    font-size: 0.72rem;
+    font-weight: 700;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 0.2rem 0.5rem;
+    letter-spacing: 0.06em;
+}
+
+/* ── REGULATORY TABLE ────────────────── */
+.reg-table {
+    padding: 0 1.5rem 4rem;
+    max-width: 1000px;
+}
+
+.reg-grid {
+    border: var(--border-w) solid var(--ink);
+    background: var(--bg);
+}
+
+.reg-row {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 1.5rem;
+    padding: 1rem 1.5rem;
+    border-bottom: 1.5px solid var(--ink);
+    font-size: 0.85rem;
+}
+
+.reg-row:last-child { border-bottom: none; }
+
+.reg-doc { font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; }
+.reg-ref { color: var(--ink-light); }
+
+/* ── TRUST SECTION ───────────────────── */
+.trust-section {
+    padding: 4rem 1.5rem;
+    max-width: 1000px;
+}
+
+.trust-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.trust-card {
+    border: var(--border-w) solid var(--ink);
+    background: var(--bg);
+    padding: 1.4rem 1.6rem;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 1.2rem;
+    align-items: start;
+}
+
+.trust-icon {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.8rem;
+    line-height: 1;
+    margin-top: 0.1rem;
+}
+
+.trust-title { font-weight: 700; font-size: 0.85rem; margin-bottom: 0.25rem; }
+.trust-desc { font-size: 0.78rem; line-height: 1.6; color: var(--ink-light); }
+
+.trust-badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 0.25rem 0.55rem;
+    align-self: end;
+    white-space: nowrap;
+}
+
+/* ── README BLOCK ────────────────────── */
+.readme-section {
+    background: var(--bg-alt);
+    border-top: var(--border-w) solid var(--ink);
+    padding: 4rem 1.5rem;
+}
+
+.readme-inner {
+    max-width: 780px;
+    margin: 0 auto;
+}
+
+.readme-content {
+    font-size: 0.88rem;
+    line-height: 1.75;
+    color: var(--ink);
+}
+
+.readme-content h1 {
+    font-family: 'Archivo', sans-serif; font-weight: 800;
+    font-size: 2rem;
+    text-transform: uppercase;
+    margin: 0 0 1.5rem;
+    line-height: 1.05;
+}
+
+.readme-content h2 {
+    font-family: 'Archivo', sans-serif; font-weight: 800;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    margin: 2.5rem 0 1rem;
+    line-height: 1.1;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 0.3rem;
+}
+
+.readme-content h3 {
+    font-family: 'Archivo', sans-serif; font-weight: 800;
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    margin: 1.8rem 0 0.8rem;
+}
+
+.readme-content p { margin-bottom: 1rem; }
+
+.readme-content ul, .readme-content ol {
+    margin: 1rem 0 1rem 1.5rem;
+}
+
+.readme-content li { margin-bottom: 0.4rem; }
+
+.readme-content strong { font-weight: 700; }
+
+.readme-content code {
+    background: var(--ink);
+    color: var(--green);
+    padding: 0.08em 0.4em;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85em;
+}
+
+.readme-content pre {
+    background: var(--ink);
+    color: #E0E0E0;
+    padding: 1.2rem 1.4rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    line-height: 1.6;
+}
+
+.readme-content pre code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+}
+
+.readme-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.82rem;
+    border: 2px solid var(--ink);
+}
+
+.readme-content thead {
+    background: var(--ink);
+    color: var(--bg);
+}
+
+.readme-content th, .readme-content td {
+    padding: 0.6rem 0.9rem;
+    text-align: left;
+    border: 1px solid var(--ink);
+}
+
+.readme-content th {
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+}
+
+.readme-content a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+}
+
+.readme-content blockquote {
+    border-left: 4px solid var(--ink);
+    padding-left: 1rem;
+    margin: 1rem 0;
+    color: var(--ink-light);
+    font-style: italic;
+}
+
+.readme-content hr {
+    border: none;
+    border-top: 2px solid var(--ink);
+    margin: 2rem 0;
+}
+
+/* ── FOOTER ──────────────────────────── */
+.page-footer {
+    border-top: var(--border-w) solid var(--ink);
+    padding: 2rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-text {
+    font-size: 0.72rem;
+    color: var(--ink-muted);
+    letter-spacing: 0.04em;
+}
+
+.footer-links { display: flex; gap: 1.5rem; }
+
+.footer-links a {
+    font-size: 0.72rem;
+    color: var(--ink-muted);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.footer-links a:hover { color: var(--ink); }
+
+/* ── RESPONSIVE ──────────────────────── */
+@media (max-width: 720px) {
+    .features-grid, .modes-grid { grid-template-columns: 1fr; }
+    .deployment-grid { grid-template-columns: 1fr; }
+    .output-row { grid-template-columns: 1fr; gap: 0.4rem; }
+    .reg-row { grid-template-columns: 1fr; gap: 0.3rem; }
+    .trust-card { grid-template-columns: 1fr; gap: 0.6rem; }
+    .trust-badge { width: fit-content; }
+    .nav { padding: 0.7rem 1rem; flex-wrap: wrap; }
+    .nav-skill { display: none; }
+    .nav-back { font-size: 0.65rem; padding: 0.3rem 0.6rem; }
+    .hero, .section, .trust-section { padding-left: 1rem; padding-right: 1rem; }
+    .features-grid, .workflow-list, .modes-grid, .tree-wrap, .deployment-grid, .outputs-list, .evals-section, .reg-table {
+        padding-left: 1rem; padding-right: 1rem;
+    }
+}
+</style>
+</head>
+<body>
+
+    <nav class="nav">
+        <div class="nav-section-icon">§</div>
+        <span class="nav-brand"><a href="https://onezero.legal">onezero.legal</a></span>
+        <span class="nav-divider">/</span>
+        <span class="nav-skill">/SKILLS/NIS2.NAVIGATOR</span>
+        <div class="nav-spacer"></div>
+        <a href="https://onezero.legal" class="nav-back">← PORTFOLIO</a>
+    </nav>
+
+    <section class="hero">
+        <div class="badges">
+            <div class="badge badge--live">LIVE · v1.1 STABLE</div>
+            <div class="badge">BUILD 2026.05.27</div>
+            <div class="badge badge--color">DIRECTIVE 2022/2555</div>
+            <div class="badge">AGPL-3.0 · 4 EVAL CASES · 32 ASSERTIONS</div>
+        </div>
+
+        <h1>CYBERSECURITY<br>SCOPE<br><em>to</em> <span class="hl-accent">ROADMAP</span>.</h1>
+
+        <p class="hero-sub">Runs a full NIS2 compliance assessment under EU Directive 2022/2555. <span class="hl">Scope determination</span>, <span class="hl">essential-vs-important classification</span>, <span class="hl">Art. 21 gap analysis</span>, <span class="hl">0–4 maturity scoring</span>, <span class="hl">prioritized roadmap</span>, and <span class="hl">management body briefing</span> — with deep German BSIG-neu coverage.</p>
+    </section>
+
+    <div class="marquee-wrap">
+        <div class="marquee-track">
+            <span class="marquee-text">DIRECTIVE 2022/2555 &nbsp; · &nbsp; ART. 20 &nbsp; · &nbsp; ART. 21 &nbsp; · &nbsp; ART. 23 &nbsp; · &nbsp; ANNEX I &nbsp; · &nbsp; ANNEX II &nbsp; · &nbsp; BSIG-NEU &nbsp; · &nbsp; § 30 BSIG &nbsp; · &nbsp; § 38 BSIG &nbsp; · &nbsp; NIS2UMSUCG &nbsp; · &nbsp; CIR 2024/2690 &nbsp; · &nbsp; ISO 27001:2022 &nbsp; · &nbsp; BSI &nbsp; · &nbsp; DORA &nbsp; · &nbsp; DIRECTIVE 2022/2555 &nbsp; · &nbsp; ART. 20 &nbsp; · &nbsp; ART. 21 &nbsp; · &nbsp; ART. 23 &nbsp; · &nbsp; ANNEX I &nbsp; · &nbsp; ANNEX II &nbsp; · &nbsp; BSIG-NEU &nbsp; · &nbsp; § 30 BSIG &nbsp; · &nbsp; § 38 BSIG &nbsp; · &nbsp; NIS2UMSUCG &nbsp; · &nbsp; CIR 2024/2690 &nbsp; · &nbsp; ISO 27001:2022 &nbsp; · &nbsp; BSI &nbsp; · &nbsp; DORA</span>
+        </div>
+    </div>
+
+    <section class="section" id="features">
+        <div class="section-label"><span class="section-icon">§</span> 01 · CAPABILITIES</div>
+        <h2>SIX PRIMITIVES.<br><em>One</em> SKILL.</h2>
+        <p class="section-intro">
+            Each capability is documented separately, tested separately, and called by
+            the workflow at the right moment. Compose them or invoke individually.
+        </p>
+    </section>
+
+    <div class="features-grid">
+        <div class="feature-card" style="background-color: #C8F0DC;">
+            <div class="feature-number">01</div>
+            <div class="feature-name">SCOPE &amp; CLASSIFICATION</div>
+            <div class="feature-desc">Maps the entity to Annex I or Annex II, applies the size test, and returns essential / important / out-of-scope. Flags DORA carve-out, CIR 2024/2690, and regardless-of-size categories.</div>
+        </div>
+        <div class="feature-card" style="background-color: #FFE0A0;">
+            <div class="feature-number">02</div>
+            <div class="feature-name">ART. 21 GAP ANALYSIS</div>
+            <div class="feature-desc">Walks the 10 risk-management measures of Art. 21(2)(a)–(j) / § 30 BSIG-neu. One targeted question per measure, scored 0–4 with explained reasoning.</div>
+        </div>
+        <div class="feature-card" style="background-color: #D8C8F0;">
+            <div class="feature-number">03</div>
+            <div class="feature-name">ISO 27001 CROSSREF</div>
+            <div class="feature-desc">Each measure mapped to ISO 27001:2022 Annex A controls, so existing certification work is credited instead of re-audited.</div>
+        </div>
+        <div class="feature-card" style="background-color: #C0DCF4;">
+            <div class="feature-number">04</div>
+            <div class="feature-name">COMPLIANCE ROADMAP</div>
+            <div class="feature-desc">P1/P2/P3 prioritization keyed to entity category and maturity. Essential entities escalate faster under proactive supervision.</div>
+        </div>
+        <div class="feature-card" style="background-color: #FFD0B8;">
+            <div class="feature-number">05</div>
+            <div class="feature-name">GERMAN DEEP COVERAGE</div>
+            <div class="feature-desc">BSIG-neu / NIS2UmsuCG: BSI registration, § 32 incident reporting, § 38 management liability, Nachweispflicht, BSI #nis2know roadmap.</div>
+        </div>
+        <div class="feature-card" style="background-color: #B0E0D4;">
+            <div class="feature-number">06</div>
+            <div class="feature-name">EU JURISDICTION PROFILES</div>
+            <div class="feature-desc">National profiles for Italy, France, Netherlands, Austria, and Spain — entity taxonomies and supervisory authorities, with transposition status flagged for web verification.</div>
+        </div>
+    </div>
+
+    <section class="section" id="workflow">
+        <div class="section-label"><span class="section-icon">§</span> 02 · WORKFLOW</div>
+        <h2>FROM INPUT<br><em>to</em> ARTEFACT.</h2>
+        <p class="section-intro">
+            Eleven structured steps. The human stays accountable; the skill carries the
+            structure, the citations, and the document trail.
+        </p>
+    </section>
+
+    <div class="workflow-list">
+        <div class="workflow-step">
+            <div class="workflow-step-num">01</div>
+            <div class="workflow-step-body">
+                <div class="workflow-step-title">Disclaimer &amp; web search</div>
+                <div class="workflow-step-desc">Non-blocking disclaimer. Search for current NIS2 enforcement and implementing-regulation developments before starting.</div>
+            </div>
+        </div>
+        <div class="workflow-step">
+            <div class="workflow-step-num">02</div>
+            <div class="workflow-step-body">
+                <div class="workflow-step-title">Jurisdiction focus</div>
+                <div class="workflow-step-desc">EU-level only, a specific Member State, or both. Loads the matching reference profile (Germany, or IT/FR/NL/AT/ES).</div>
+            </div>
+        </div>
+        <div class="workflow-step">
+            <div class="workflow-step-num">03</div>
+            <div class="workflow-step-body">
+                <div class="workflow-step-title">Scope intake</div>
+                <div class="workflow-step-desc">Five questions one at a time: sector, services, size, group structure, special status (DNS, TLD, trust service, public comms, sole provider).</div>
+            </div>
+        </div>
+        <div class="workflow-step">
+            <div class="workflow-step-num">04</div>
+            <div class="workflow-step-body">
+                <div class="workflow-step-title">Classification</div>
+                <div class="workflow-step-desc">Annex mapping + size test → essential / important / out of scope. Check DORA exclusion and CIR 2024/2690.</div>
+            </div>
+        </div>
+        <div class="workflow-step">
+            <div class="workflow-step-num">05</div>
+            <div class="workflow-step-body">
+                <div class="workflow-step-title">Scope output</div>
+                <div class="workflow-step-desc">Sector, size class, entity category, legal basis, special flags. For Germany: BSI registration status.</div>
+            </div>
+        </div>
+        <div class="workflow-step">
+            <div class="workflow-step-num">06</div>
+            <div class="workflow-step-body">
+                <div class="workflow-step-title">Art. 21 walkthrough</div>
+                <div class="workflow-step-desc">For each of the 10 measures: explain the requirement, ask one question, score 0–4, note gaps where score ≤ 2.</div>
+            </div>
+        </div>
+        <div class="workflow-step">
+            <div class="workflow-step-num">07</div>
+            <div class="workflow-step-body">
+                <div class="workflow-step-title">Gap summary</div>
+                <div class="workflow-step-desc">Maturity table across all 10 measures with traffic lights. Overall score out of 40 and overall rating.</div>
+            </div>
+        </div>
+        <div class="workflow-step">
+            <div class="workflow-step-num">08</div>
+            <div class="workflow-step-body">
+                <div class="workflow-step-title">Roadmap prioritization</div>
+                <div class="workflow-step-desc">Map each gap to P1 (0–3 mo) / P2 (3–6 mo) / P3 (6–12 mo) by entity category and maturity. Maturity 3–4 → maintenance.</div>
+            </div>
+        </div>
+        <div class="workflow-step">
+            <div class="workflow-step-num">09</div>
+            <div class="workflow-step-body">
+                <div class="workflow-step-title">Germany-specific items</div>
+                <div class="workflow-step-desc">BSI registration, § 38 management obligations, Nachweispflicht deadline (Dec 2028), § 32 incident reporting, KRITIS-Dachgesetz interaction.</div>
+            </div>
+        </div>
+        <div class="workflow-step">
+            <div class="workflow-step-num">10</div>
+            <div class="workflow-step-body">
+                <div class="workflow-step-title">Management briefing</div>
+                <div class="workflow-step-desc">Art. 20 / § 38 BSIG board obligations: approve measures, undergo training (non-delegable), oversee implementation, personal liability (DE).</div>
+            </div>
+        </div>
+        <div class="workflow-step">
+            <div class="workflow-step-num">11</div>
+            <div class="workflow-step-body">
+                <div class="workflow-step-title">Final report</div>
+                <div class="workflow-step-desc">Consolidate scope, gaps, roadmap, management obligations, and jurisdiction specifics into one assessment report.</div>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="section" id="tree">
+        <div class="section-label"><span class="section-icon">§</span> 03 · ANATOMY</div>
+        <h2>WHAT'S<br>IN <em>the</em> SKILL.</h2>
+        <p class="section-intro">
+            Single-folder skill. SKILL.md is the runtime spec; references hold the
+            knowledge corpus; evals hold the proof.
+        </p>
+    </section>
+
+    <div class="tree-wrap">
+        <div class="tree-card">
+            <pre>nis2-navigator/
+├── evals  <span class="comment"># Test cases + assertions</span>
+│   └── evals.json  <span class="comment"># 4 cases, 32 assertions</span>
+├── references  <span class="comment"># Reference corpus</span>
+│   ├── art21-measures.md
+│   ├── eu-jurisdiction-profiles.md
+│   ├── germany-nis2umsucg.md
+│   ├── regulatory-sources.md
+│   ├── sector-classification.md
+│   └── templates.md
+├── CHANGELOG.md  <span class="comment"># Version history</span>
+├── README.md  <span class="comment"># Deployment guide</span>
+└── SKILL.md  <span class="comment"># Main skill instructions</span></pre>
+        </div>
+    </div>
+
+    <section class="section" id="deploy">
+        <div class="section-label"><span class="section-icon">§</span> 04 · DEPLOYMENT</div>
+        <h2>INSTALL<br><em>and</em> INVOKE.</h2>
+        <p class="section-intro">
+            Two deployment surfaces. The skill auto-triggers on relevant keywords once
+            installed.
+        </p>
+    </section>
+
+    <div class="deployment-grid">
+        <div class="deploy-card" style="background-color: #FCCCA0;">
+            <h3>CLAUDE.AI USER SKILLS</h3>
+            <ol>
+                <li>Settings → Profile → Custom Skills</li>
+                <li>Upload the entire <code>nis2-navigator/</code> folder</li>
+                <li>Skill auto-triggers on relevant keywords</li>
+            </ol>
+        </div>
+        <div class="deploy-card">
+            <h3>CLAUDE CODE / MCP</h3>
+            <ol>
+                <li>Copy folder to your skills directory:</li>
+            </ol>
+            <pre>cp -r nis2-navigator/ \
+   ~/.claude/skills/user/</pre>
+        </div>
+    </div>
+
+    <section class="section" id="outputs">
+        <div class="section-label"><span class="section-icon">§</span> 05 · OUTPUTS</div>
+        <h2>WHAT YOU<br><em>get</em> BACK.</h2>
+        <p class="section-intro">
+            Every output is documented, version-pinned, and traceable to its source citation.
+        </p>
+    </section>
+
+    <div class="outputs-list">
+        <div class="output-row">
+            <div class="output-name">Scope determination</div>
+            <div class="output-desc">Sector, size classification, entity category (essential / important / out of scope), legal basis, and special flags (DORA, CIR, regardless-of-size).</div>
+        </div>
+        <div class="output-row">
+            <div class="output-name">Gap analysis table</div>
+            <div class="output-desc">Maturity 0–4 across all 10 Art. 21 measures with traffic lights, overall score out of 40, and overall rating.</div>
+        </div>
+        <div class="output-row">
+            <div class="output-name">Compliance roadmap</div>
+            <div class="output-desc">Per-gap current state, target state, 2–3 key actions, effort (S/M/L/XL), and priority with timeline.</div>
+        </div>
+        <div class="output-row">
+            <div class="output-name">Management briefing</div>
+            <div class="output-desc">Art. 20 / § 38 BSIG board-level obligations and, for Germany, personal liability under § 38(2).</div>
+        </div>
+        <div class="output-row">
+            <div class="output-name">Jurisdiction overlay</div>
+            <div class="output-desc">Germany BSIG-neu items, or a country profile for IT / FR / NL / AT / ES with supervisory authority and transposition caveats.</div>
+        </div>
+        <div class="output-row">
+            <div class="output-name">Final assessment report</div>
+            <div class="output-desc">Executive summary, scope detail, scoring table, prioritized roadmap, management obligations, jurisdiction requirements, next steps.</div>
+        </div>
+    </div>
+
+    <section class="section" id="evals">
+        <div class="section-label"><span class="section-icon">§</span> 06 · EVALS</div>
+        <h2>TESTED<br><em>before</em> SHIPPED.</h2>
+        <p class="section-intro">
+            Every release runs against a fixed test suite. Assertions check numeric
+            consistency, citation accuracy, and decision-tree branches.
+        </p>
+    </section>
+
+    <div class="evals-section">
+        <div class="evals-stats">
+            <div class="stat-card">
+                <div class="stat-value">04</div>
+                <div class="stat-label">Test Cases</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">32</div>
+                <div class="stat-label">Assertions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">100%</div>
+                <div class="stat-label">Coverage Required</div>
+            </div>
+        </div>
+        <div class="eval-topics">
+            <div class="eval-row">
+                <div class="eval-id">01</div>
+                <div>We&#x27;re a German cloud-hosting provider, 80 employees, €15M turnover, balance shee...</div>
+                <div class="eval-asserts">8 ASSERTS</div>
+            </div>
+            <div class="eval-row">
+                <div class="eval-id">02</div>
+                <div>Run an Art</div>
+                <div class="eval-asserts">8 ASSERTS</div>
+            </div>
+            <div class="eval-row">
+                <div class="eval-id">03</div>
+                <div>Draft me a management briefing for our German board on NIS2 management body obli...</div>
+                <div class="eval-asserts">8 ASSERTS</div>
+            </div>
+            <div class="eval-row">
+                <div class="eval-id">04</div>
+                <div>How do we register with the BSI under BSIG-neu? We&#x27;re a German important entity,...</div>
+                <div class="eval-asserts">8 ASSERTS</div>
+            </div>
+        </div>
+    </div>
+
+    <section class="section" id="regulatory">
+        <div class="section-label"><span class="section-icon">§</span> 07 · REGULATORY BASIS</div>
+        <h2>WHAT IT<br><em>cites.</em></h2>
+        <p class="section-intro">
+            Every legal verdict resolves to one of these instruments. No invented
+            articles, no synthetic recitals.
+        </p>
+    </section>
+
+    <div class="reg-table">
+        <div class="reg-grid">
+            <div class="reg-row">
+                <div class="reg-doc">EU Directive 2022/2555</div>
+                <div class="reg-ref">The NIS2 Directive — scope, classification, and obligations.</div>
+            </div>
+            <div class="reg-row">
+                <div class="reg-doc">Art. 21</div>
+                <div class="reg-ref">The 10 cybersecurity risk-management measures, (2)(a)–(j).</div>
+            </div>
+            <div class="reg-row">
+                <div class="reg-doc">Art. 20 / Art. 23</div>
+                <div class="reg-ref">Management body responsibilities and incident reporting obligations.</div>
+            </div>
+            <div class="reg-row">
+                <div class="reg-doc">BSIG-neu (NIS2UmsuCG)</div>
+                <div class="reg-ref">German transposition: § 30 measures, § 32 reporting, § 38 management liability, BSI registration.</div>
+            </div>
+            <div class="reg-row">
+                <div class="reg-doc">CIR 2024/2690</div>
+                <div class="reg-ref">Binding technical requirements for digital infrastructure / provider entities beyond Art. 21.</div>
+            </div>
+            <div class="reg-row">
+                <div class="reg-doc">ISO 27001:2022</div>
+                <div class="reg-ref">Annex A control mapping for each risk-management measure.</div>
+            </div>
+        </div>
+    </div>
+
+    <section class="trust-section" id="trust">
+        <div class="section-label"><span class="section-icon">§</span> 08 · TRUST</div>
+        <h2>EVERY STEP,<br><em>auditable.</em></h2>
+        <p class="section-intro">
+            The trace is the product. Nothing happens off the record — no hidden tool
+            calls, no silent retrieval, no opaque chain-of-thought.
+        </p>
+        <div class="trust-grid">
+            <div class="trust-card">
+                <div class="trust-icon">§</div>
+                <div class="trust-body">
+                    <div class="trust-title">Source-anchored output.</div>
+                    <div class="trust-desc">Every classification, maturity score, and roadmap priority traces to a Directive article, BSIG-neu §, or ISO 27001 control.</div>
+                </div>
+                <div class="trust-badge">VERIFIED</div>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon">¶</div>
+                <div class="trust-body">
+                    <div class="trust-title">Reproducible decisions.</div>
+                    <div class="trust-desc">Pin a build; recreate the scope verdict and gap scoring years later for audit or supervisory defence.</div>
+                </div>
+                <div class="trust-badge">IMMUTABLE</div>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon">†</div>
+                <div class="trust-body">
+                    <div class="trust-title">Explained scoring.</div>
+                    <div class="trust-desc">Each 0–4 maturity score states its reasoning so the entity can challenge it before it reaches the roadmap.</div>
+                </div>
+                <div class="trust-badge">ENFORCED</div>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon">**</div>
+                <div class="trust-body">
+                    <div class="trust-title">EU-native.</div>
+                    <div class="trust-desc">Built around Annex I/II, BSI registration, and Member State transpositions — Germany deep, IT/FR/NL/AT/ES profiled. Not retrofitted.</div>
+                </div>
+                <div class="trust-badge">NATIVE</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="readme-section" id="readme">
+        <div class="readme-inner">
+            <div class="section-label" style="margin-bottom: 1.5rem;">
+                <span class="section-icon">§</span> 09 · README.MD
+            </div>
+            <div class="readme-content"><h1>NIS2 Compliance Navigator — Deployment Guide</h1>
+<p>See <a href="CHANGELOG.md">CHANGELOG.md</a> for version history.</p>
+<h2>Overview</h2>
+<p>NIS2 Compliance Navigator — scope classification, Art. 21 gap analysis, and compliance roadmap under EU Directive 2022/2555:</p>
+<ul>
+<li><strong>Scope &amp; classification</strong> — Annex I / Annex II + essential vs. important entity determination</li>
+<li><strong>Art. 21 gap analysis</strong> with 0–4 maturity scoring across the 10 risk-management measures</li>
+<li><strong>ISO 27001 cross-references</strong> for each measure to leverage existing certification work</li>
+<li><strong>Compliance roadmap</strong> with prioritisation framework (legal exposure, dependency, quick wins)</li>
+<li><strong>Deep German BSIG-neu coverage</strong> — § 30 BSIG registration, NIS2UmsuCG specifics</li>
+<li><strong>Profiles for IT, FR, NL, AT, ES</strong> — country-specific entity-type taxonomies and supervisory authorities</li>
+<li><strong>Management briefing template</strong> (Art. 20 / § 38 BSIG) for board-level liability</li>
+<li><strong>Incident reporting framework</strong> with timelines and escalation paths</li>
+<li><strong>Supply chain security</strong> considerations integrated throughout</li>
+<li><strong>Final assessment report</strong> consolidating scope, gaps, and roadmap</li>
+</ul>
+<h2>File Structure</h2>
+<pre><code>nis2-navigator/
+├── SKILL.md                              # Main skill instructions (deploy this)
+├── CHANGELOG.md                          # Version history
+└── references/
+    ├── sector-classification.md          # Annex I / II sector taxonomy + entity-size rules
+    ├── art21-measures.md                 # The 10 risk-management measures (Art. 21(2)(a)-(j))
+    ├── germany-nis2umsucg.md             # § 30 BSIG, NIS2UmsuCG, BSI registration
+    ├── eu-jurisdiction-profiles.md       # IT, FR, NL, AT, ES — entity taxonomy + SA contacts
+    ├── regulatory-sources.md             # Official EU + Member State source catalog
+    └── templates.md                      # Output templates (gap analysis, roadmap, briefing)
+</code></pre>
+<h2>Deployment</h2>
+<h3>Claude.ai (User Skills)</h3>
+<ol>
+<li>Go to <strong>Settings → Profile → Custom Skills</strong> (or equivalent)</li>
+<li>Upload the entire <code>nis2-navigator/</code> folder structure</li>
+<li>The skill will auto-trigger on "NIS2", "BSIG", "BSIG-neu", "NIS2UmsuCG", "Annex I/II", "essential entity", or "Art. 21 gap analysis"</li>
+</ol>
+<h3>Claude Code / Custom MCP Setup</h3>
+<ol>
+<li>Copy the <code>nis2-navigator/</code> folder to your skills directory:
+   <code>bash
+   cp -r nis2-navigator/ /path/to/your/skills/user/nis2-navigator/</code></li>
+<li>Ensure the skill is registered in your configuration</li>
+</ol>
+<h2>Usage</h2>
+<h3>Quick Start</h3>
+<p>Describe your organisation:</p>
+<blockquote>
+<p>"We're a German cloud-services provider with 80 employees and €15M turnover.
+Do we fall under NIS2? If yes, give me a gap analysis against Art. 21 and a
+12-month roadmap."</p>
+</blockquote>
+<p>The skill will classify scope, run the gap analysis, and produce a phased roadmap.</p>
+<h3>Trigger Phrases</h3>
+<ul>
+<li>"NIS2" / "NIS-2" / "BSIG" / "BSIG-neu" / "NIS2UmsuCG"</li>
+<li>"Essential entity" / "Important entity" / "Annex I/II"</li>
+<li>"Art. 21 gap analysis" / "NIS2 readiness" / "Cybersecurity compliance assessment"</li>
+<li>"BSI registration" / "§ 30 BSIG"</li>
+<li>"Cyberbeveiligingswet" / "Loi Résilience" / "decreto legislativo 138"</li>
+</ul>
+<h3>Workflow</h3>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Session Init</strong></td>
+<td>Disclaimer, web search for recent developments, jurisdiction focus selection</td>
+</tr>
+<tr>
+<td><strong>Phase 1: Scope &amp; Classification</strong></td>
+<td>Annex I/II routing, essential vs. important, jurisdiction-specific overlays (~5 min)</td>
+</tr>
+<tr>
+<td><strong>Phase 2: Art. 21 Gap Analysis</strong></td>
+<td>0–4 maturity scoring across the 10 measures with ISO 27001 anchors (~15 min)</td>
+</tr>
+<tr>
+<td><strong>Phase 3: Compliance Roadmap</strong></td>
+<td>Prioritisation framework + Germany-specific items + Art. 20 / § 38 BSIG management briefing</td>
+</tr>
+<tr>
+<td><strong>Output</strong></td>
+<td>Final Assessment Report consolidating scope, gaps, and roadmap</td>
+</tr>
+</tbody>
+</table>
+<h2>Capabilities Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Scope Classification</td>
+<td>Annex I/II + essential/important + jurisdiction-specific overlays</td>
+</tr>
+<tr>
+<td>Art. 21 Gap Analysis</td>
+<td>0–4 maturity scoring across all 10 measures</td>
+</tr>
+<tr>
+<td>ISO 27001 Crossref</td>
+<td>Each measure mapped to ISO 27001 controls</td>
+</tr>
+<tr>
+<td>Roadmap Prioritisation</td>
+<td>Legal-exposure-aware sequencing with quick-win identification</td>
+</tr>
+<tr>
+<td>Germany Deep Coverage</td>
+<td>§ 30 BSIG, NIS2UmsuCG, BSI registration workflow</td>
+</tr>
+<tr>
+<td>EU Profiles</td>
+<td>IT, FR, NL, AT, ES — entity taxonomy + SA contacts</td>
+</tr>
+<tr>
+<td>Management Briefing</td>
+<td>Art. 20 / § 38 BSIG board-level liability briefing template</td>
+</tr>
+<tr>
+<td>Final Report</td>
+<td>Audit-ready assessment report consolidating all phases</td>
+</tr>
+</tbody>
+</table>
+<h2>Regulatory Basis</h2>
+<table>
+<thead>
+<tr>
+<th>Document</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NIS2 Directive</td>
+<td>EU Directive 2022/2555</td>
+</tr>
+<tr>
+<td>Art. 21</td>
+<td>10 risk-management measures</td>
+</tr>
+<tr>
+<td>Art. 23</td>
+<td>Incident reporting obligations</td>
+</tr>
+<tr>
+<td>Art. 20</td>
+<td>Management body responsibilities</td>
+</tr>
+<tr>
+<td>Annex I / II</td>
+<td>Sector and entity-type taxonomy</td>
+</tr>
+<tr>
+<td>BSIG-neu (DE)</td>
+<td>German NIS2UmsuCG transposition, § 30, § 38</td>
+</tr>
+<tr>
+<td>ISO 27001</td>
+<td>Risk-management measure crossref</td>
+</tr>
+</tbody>
+</table>
+<h2>License &amp; Disclaimer</h2>
+<p>This skill provides structured NIS2 compliance guidance based on EU Directive 2022/2555 and national transposition laws. It is not legal advice. Final compliance decisions should involve your organisation's CISO / Information Security Officer and qualified legal counsel experienced in cybersecurity regulation.</p>
+<p>Licensed under AGPL-3.0 — see <a href="../../LICENSE">LICENSE</a> at the repo root.</p>
+<hr>
+<p><em>Created by Oliver Schmidt-Prietz — OneZero Legal</em></p></div>
+        </div>
+    </section>
+
+    <footer class="page-footer">
+        <span class="footer-text">onezero.legal · /SKILLS/NIS2.NAVIGATOR · v1.1</span>
+        <nav class="footer-links">
+            <a href="https://onezero.legal">Portfolio</a>
+            <a href="#features">Capabilities</a>
+            <a href="#workflow">Workflow</a>
+            <a href="#readme">README</a>
+        </nav>
+    </footer>
+
+</body>
+</html>
