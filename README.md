@@ -1,5 +1,7 @@
 # NIS2 Compliance Navigator — Deployment Guide
 
+> 📄 **[View the interactive skill page →](https://oliverschmidtprietz.github.io/NIS2-Navigator/)**
+
 See [CHANGELOG.md](CHANGELOG.md) for version history.
 
 ## Overview
