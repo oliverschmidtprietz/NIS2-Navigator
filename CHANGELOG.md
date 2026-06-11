@@ -6,6 +6,18 @@ Format: `## [vX.Y] — YYYY-MM-DD`
 
 ---
 
+## [v1.2] — 2026-06-11
+
+Additive output-discipline + audience-clarity guidance. No change to scope logic, the Art. 21 gap-analysis method, maturity scoring, or jurisdiction profiles.
+
+- **"Who this is for" framing.** SKILL.md now names the intended operator (in-house CISO / Information Security Officer / IT-security or compliance lead, optionally working with counsel) and states explicitly that binding compliance calls and liability questions stay with the organisation's management body and qualified legal counsel.
+- **Confidence Signaling (new subsection).** The skill now tracks its own epistemic confidence (High / Medium / Low) *separately* from the entity's 0–4 maturity scores, surfaces it on borderline scope calls and contested citations, and is instructed to **never fabricate a citation** — if a provision or source cannot be verified against the bundled references or live search, hand it back for local counsel to confirm.
+- **Scope-output template** gains a `Confidence:` line so each classification carries its own reliability signal.
+
+**Status:** reviewed (carried from v1.1) — the change is additive guidance, not a change to assessment logic.
+
+---
+
 ## [v1.1] — 2026-05-31
 
 Currency fix for the German national profile.
